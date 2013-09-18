@@ -1,38 +1,22 @@
-﻿<BY>
-	<names>
-		<firstName>
-			<val>Алекс</val>
-		</firstName>
-		<secondName>
-			<val>Мишкевич</val>
-		</secondName>
-	</names>
-
-	<address>
-		<city name="Минск">
-			<street name="Академическая улица" index="220012">
-				<house>3</house>
-				<house>4</house>
-				<house>5</house>
-				<house>6</house>
-			</street>
-		</city>
-	</address>
-
-</BY>
+﻿<!-- DATA  -->
 
 <country name="">
-	<names>
+	<fullnames>
 		<firstName>
 		</firstName>
 		<secondName>
 		</secondName>		
-	</names>
+	</fullnames>
 	<staff name="">
 		<city name="">
 			<street name="">
-				<house></house>
+				<house number="" postcode="">
+					<telephone_number></telephone_number>
+					<!-- prefix: suite, flat, office квартира, оффис -->
+					<habitationnumber prefix=""></habitationnumber>
+				</house>
 			</street>
 		</city>
 	</staff>
 </country>
+
