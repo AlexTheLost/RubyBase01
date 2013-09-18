@@ -1,0 +1,38 @@
+﻿<BY>
+	<names>
+		<firstName>
+			<val>Алекс</val>
+		</firstName>
+		<secondName>
+			<val>Мишкевич</val>
+		</secondName>
+	</names>
+
+	<address>
+		<city name="Минск">
+			<street name="Академическая улица" index="220012">
+				<house>3</house>
+				<house>4</house>
+				<house>5</house>
+				<house>6</house>
+			</street>
+		</city>
+	</address>
+
+</BY>
+
+<country name="">
+	<names>
+		<firstName>
+		</firstName>
+		<secondName>
+		</secondName>		
+	</names>
+	<staff name="">
+		<city name="">
+			<street name="">
+				<house></house>
+			</street>
+		</city>
+	</staff>
+</country>
