@@ -70,7 +70,7 @@
 	</staff>	
 </country>
 
-<country name="BY">
+<country name="RU">
 	<fullnames>
 		<firstName>Василий</firstName>
 		<firstName>Инокентий</firstName>
@@ -112,7 +112,7 @@
 			</street>			
 		</city>
 	</staff>
-	<staff name="Гродненская" type="область">
+	<staff name="Московская" type="область">
 		<city name="Мытищи" phonecode="+7 495">
 			<street name="Карпинская" type="улица">
 				<house number="20" postcode="141000">					
@@ -134,22 +134,50 @@
 	</staff>	
 </country>
 
-<country name="">
+<country name="US">
 	<fullnames>
-		<firstName>
-		</firstName>
-		<secondName>
-		</secondName>		
+		<firstName>Jon</firstName>
+		<firstName>George</firstName>
+		<firstName>George</firstName>
+		<firstName>Lyndon</firstName>
+		<firstName>Richard</firstName>
+		<firstName>James</firstName>
+		<firstName>Ulysses</firstName>
+		<firstName>Andrew</firstName>
+		<firstName>Franklin</firstName>
+		<secondName>Smith</secondName>		
+		<secondName>Pierce</secondName>	
+		<secondName>Fillmore</secondName>	
+		<secondName>Harrison</secondName>	
+		<secondName>Roosevelt</secondName>	
+		<secondName>Wilson</secondName>	
+		<secondName>Washington</secondName>	
+		<secondName>Jackson</secondName>	
+		<secondName>Adams</secondName>	
+		<secondName>Jefferson</secondName>	
 	</fullnames>
-	<staff name="">
-		<city name="" phonecode="">
-			<street name="">
-				<house number="" postcode="">
-					<telephone_number></telephone_number>
-					<!-- prefix: suite, flat, office квартира, оффис -->
-					<habitationnumber prefix=""></habitationnumber>
+	<staff name="New York" type="state">
+		<city name="New York" phonecode="+1 212">
+			<street name="5th and Madison" type="avenues">
+				<house number="1" postcode="10001">					
+					<habitationnumber prefix="suite" firstnumber="110" lastnumber="115" />
+					<habitationnumber prefix="apartment" firstnumber="50" lastnumber="100" />
+					<habitationnumber prefix="office" firstnumber="1" lastnumber="40" />
 				</house>
+				<house number="4" postcode="10003">
+					<habitationnumber prefix="office" firstnumber="1" lastnumber="300" />
+				</house>				
 			</street>
+			<street name="1st and York" type="avenues">
+				<house number="10" postcode="10041">					
+					<habitationnumber prefix="office" firstnumber="1" lastnumber="200" />
+				</house>
+				<house number="21" postcode="10042">
+					<habitationnumber prefix="office" firstnumber="1" lastnumber="150" />
+					<habitationnumber prefix="suite" firstnumber="160" lastnumber="175" />
+				</house>				
+			</street>			
 		</city>
 	</staff>
+	</staff>	
 </country>
