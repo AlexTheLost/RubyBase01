@@ -1,7 +1,7 @@
 ﻿<!-- DATA  -->
 <!-- prefix: suite, flat, office квартира, оффис -->
 <!-- street/type: улица, переулок, street -->
-<!-- staff/type: область, регион, шатат -->
+<!-- state/type: область, регион, шатат -->
 
 
 
@@ -29,7 +29,7 @@
 		<secondname>Середа</secondname>	
 		<secondname>Лесик</secondname>			
 	</fullnames>
-	<staff name="NONE" type="область">
+	<state name="NONE" type="область">
 		<city name="Минск" phonecode="+375 17">
 			<street name="Авакяна" type="улица">
 				<house number="10" postcode="220039">					
@@ -48,8 +48,8 @@
 				</house>				
 			</street>			
 		</city>
-	</staff>
-	<staff name="Гродненская" type="область">
+	</state>
+	<state name="Гродненская" type="область">
 		<city name="Гродно" phonecode="+375 15">
 			<street name="Гонионская" type="улица">
 				<house number="48" postcode="230027">					
@@ -68,7 +68,7 @@
 				</house>				
 			</street>			
 		</city>
-	</staff>	
+	</state>	
 </country>
 
 <country name="RU">
@@ -93,7 +93,7 @@
 		<secondname>Толстой</secondname>	
 		<secondname>Гоголь</secondname>	
 	</fullnames>
-	<staff name="Кировская" type="область">
+	<state name="Кировская" type="область">
 		<city name="Зуевка" phonecode="+7 83337">
 			<street name="Базарная" type="улица">
 				<house number="20" postcode="612410">					
@@ -112,8 +112,26 @@
 				</house>				
 			</street>			
 		</city>
-	</staff>
-	<staff name="Московская" type="область">
+		<city name="Тестовка" phonecode="+7 83337">
+			<street name="Базарная" type="улица">
+				<house number="20" postcode="612410">					
+					<habitationnumber prefix="квартира" firstnumber="1" lastnumber="12" />
+				</house>
+				<house number="5" postcode="612410">
+					<habitationnumber prefix="квартира" firstnumber="1" lastnumber="7" />
+				</house>				
+			</street>
+			<street name="Куйбышева" type="улица">
+				<house number="1" postcode="612410">					
+					<habitationnumber prefix="квартира" firstnumber="1" lastnumber="11" />
+				</house>
+				<house number="4" postcode="612410">
+					<habitationnumber prefix="квартира" firstnumber="1" lastnumber="15" />
+				</house>				
+			</street>			
+		</city>		
+	</state>
+	<state name="Московская" type="область">
 		<city name="Мытищи" phonecode="+7 495">
 			<street name="Карпинская" type="улица">
 				<house number="20" postcode="141000">					
@@ -132,14 +150,13 @@
 				</house>				
 			</street>			
 		</city>
-	</staff>	
+	</state>	
 </country>
 
 <country name="US">
 	<fullnames>
 		<firstname>Jon</firstname>
-		<firstname>George</firstname>
-		<firstname>George</firstname>
+		<firstname>George</firstname>		
 		<firstname>Lyndon</firstname>
 		<firstname>Richard</firstname>
 		<firstname>James</firstname>
@@ -157,7 +174,7 @@
 		<secondname>Adams</secondname>	
 		<secondname>Jefferson</secondname>	
 	</fullnames>
-	<staff name="New York" type="state">
+	<state name="New York" type="state">
 		<city name="New York" phonecode="+1 212">
 			<street name="5th and Madison" type="avenues">
 				<house number="1" postcode="10001">					
@@ -179,7 +196,7 @@
 				</house>				
 			</street>			
 		</city>
-	</staff>	
+	</state>	
 </country>
 
 </root>
