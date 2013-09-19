@@ -1,4 +1,73 @@
 ﻿<!-- DATA  -->
+<!-- prefix: suite, flat, office квартира, оффис -->
+<!-- street/type: улица, переулок, street -->
+<!-- staff/type: область, регион, шатат -->
+
+<?xml version="1.0"?>
+
+<country name="BY">
+	<fullnames>
+		<firstName>Александр</firstName>
+		<firstName>Ян</firstName>
+		<firstName>Станислав</firstName>
+		<firstName>Игорь</firstName>
+		<firstName>Михаил</firstName>
+		<firstName>Константин</firstName>
+		<firstName>Павел</firstName>
+		<firstName>Дмитрий</firstName>
+		<firstName>Сенько</firstName>
+		<secondName>Белькевич</secondName>		
+		<secondName>Ластовский</secondName>	
+		<secondName>Пичета</secondName>	
+		<secondName>Довнар</secondName>	
+		<secondName>Машкевич</secondName>	
+		<secondName>Дудкович</secondName>	
+		<secondName>Радзивил</secondName>	
+		<secondName>Сапега</secondName>	
+		<secondName>Середа</secondName>	
+		<secondName>Лесик</secondName>	
+	</fullnames>
+	<staff name="NONE" type="область">
+		<city name="Минск" phonecode="+375 17">
+			<street name="Авакяна" type="улица">
+				<house number="10" postcode="220039">					
+					<habitationnumber prefix="квартира" firstnumber="1" lastnumber="100" />
+				</house>
+				<house number="1" postcode="220007">
+					<habitationnumber prefix="квартира" firstnumber="1" lastnumber="50" />
+				</house>				
+			</street>
+			<street name="Айвазовского" type="улица">
+				<house number="1" postcode="220026">					
+					<habitationnumber prefix="офис" firstnumber="1" lastnumber="10" />
+				</house>
+				<house number="41" postcode="220118">
+					<habitationnumber prefix="квартира" firstnumber="1" lastnumber="150" />
+				</house>				
+			</street>			
+		</city>
+	</staff>
+	<staff name="Гродненская" type="область">
+		<city name="Гродно" phonecode="+375 15">
+			<street name="Гонионская" type="улица">
+				<house number="48" postcode="230027">					
+					<habitationnumber prefix="квартира" firstnumber="1" lastnumber="25" />
+				</house>
+				<house number="74" postcode="230027">
+					<habitationnumber prefix="квартира" firstnumber="1" lastnumber="30" />
+				</house>				
+			</street>
+			<street name="Красноармейская" type="улица">
+				<house number="1а" postcode="230025">					
+					<habitationnumber prefix="квартира" firstnumber="1" lastnumber="5" />
+				</house>
+				<house number="6а" postcode="230025">
+					<habitationnumber prefix="дом" firstnumber="1" lastnumber="1" />
+				</house>				
+			</street>			
+		</city>
+	</staff>	
+</country>
 
 <country name="">
 	<fullnames>
@@ -8,7 +77,7 @@
 		</secondName>		
 	</fullnames>
 	<staff name="">
-		<city name="">
+		<city name="" phonecode="">
 			<street name="">
 				<house number="" postcode="">
 					<telephone_number></telephone_number>
@@ -20,3 +89,22 @@
 	</staff>
 </country>
 
+<country name="">
+	<fullnames>
+		<firstName>
+		</firstName>
+		<secondName>
+		</secondName>		
+	</fullnames>
+	<staff name="">
+		<city name="" phonecode="">
+			<street name="">
+				<house number="" postcode="">
+					<telephone_number></telephone_number>
+					<!-- prefix: suite, flat, office квартира, оффис -->
+					<habitationnumber prefix=""></habitationnumber>
+				</house>
+			</street>
+		</city>
+	</staff>
+</country>
