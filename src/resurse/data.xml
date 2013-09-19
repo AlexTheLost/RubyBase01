@@ -8,26 +8,26 @@
 <root>
 <country name="BY">
 	<fullnames>
-		<firstName>Александр</firstName>
-		<firstName>Ян</firstName>
-		<firstName>Станислав</firstName>
-		<firstName>Владимир</firstName>
-		<firstName>Михаил</firstName>
-		<firstName>Константин</firstName>
-		<firstName>Павел</firstName>
-		<firstName>Дмитрий</firstName>
-		<firstName>Сенько</firstName>
-		<secondName>Белькевич</secondName>		
-		<secondName>Ластовский</secondName>	
-		<secondName>Пичета</secondName>	
-		<secondName>Короткеви</secondName>	
-		<secondName>Довнар</secondName>	
-		<secondName>Машкевич</secondName>	
-		<secondName>Дудкович</secondName>	
-		<secondName>Радзивил</secondName>	
-		<secondName>Сапега</secondName>	
-		<secondName>Середа</secondName>	
-		<secondName>Лесик</secondName>			
+		<firstname>Александр</firstname>
+		<firstname>Ян</firstname>
+		<firstname>Станислав</firstname>
+		<firstname>Владимир</firstname>
+		<firstname>Михаил</firstname>
+		<firstname>Константин</firstname>
+		<firstname>Павел</firstname>
+		<firstname>Дмитрий</firstname>
+		<firstname>Сенько</firstname>
+		<secondname>Белькевич</secondname>		
+		<secondname>Ластовский</secondname>	
+		<secondname>Пичета</secondname>	
+		<secondname>Короткеви</secondname>	
+		<secondname>Довнар</secondname>	
+		<secondname>Машкевич</secondname>	
+		<secondname>Дудкович</secondname>	
+		<secondname>Радзивил</secondname>	
+		<secondname>Сапега</secondname>	
+		<secondname>Середа</secondname>	
+		<secondname>Лесик</secondname>			
 	</fullnames>
 	<staff name="NONE" type="область">
 		<city name="Минск" phonecode="+375 17">
@@ -73,25 +73,25 @@
 
 <country name="RU">
 	<fullnames>
-		<firstName>Василий</firstName>
-		<firstName>Инокентий</firstName>
-		<firstName>Иван</firstName>
-		<firstName>Николай</firstName>
-		<firstName>Лев</firstName>
-		<firstName>Константин</firstName>
-		<firstName>Павел</firstName>
-		<firstName>Арсений</firstName>
-		<firstName>Ананьин</firstName>
-		<secondName>Андреевич</secondName>		
-		<secondName>Медведь</secondName>	
-		<secondName>Говорунов</secondName>	
-		<secondName>Пахарь</secondName>	
-		<secondName>Быстров</secondName>	
-		<secondName>Возжин</secondName>	
-		<secondName>Заяц</secondName>	
-		<secondName>Дорогин</secondName>	
-		<secondName>Толстой</secondName>	
-		<secondName>Гоголь</secondName>	
+		<firstname>Василий</firstname>
+		<firstname>Инокентий</firstname>
+		<firstname>Иван</firstname>
+		<firstname>Николай</firstname>
+		<firstname>Лев</firstname>
+		<firstname>Константин</firstname>
+		<firstname>Павел</firstname>
+		<firstname>Арсений</firstname>
+		<firstname>Ананьин</firstname>
+		<secondname>Андреевич</secondname>		
+		<secondname>Медведь</secondname>	
+		<secondname>Говорунов</secondname>	
+		<secondname>Пахарь</secondname>	
+		<secondname>Быстров</secondname>	
+		<secondname>Возжин</secondname>	
+		<secondname>Заяц</secondname>	
+		<secondname>Дорогин</secondname>	
+		<secondname>Толстой</secondname>	
+		<secondname>Гоголь</secondname>	
 	</fullnames>
 	<staff name="Кировская" type="область">
 		<city name="Зуевка" phonecode="+7 83337">
@@ -137,25 +137,25 @@
 
 <country name="US">
 	<fullnames>
-		<firstName>Jon</firstName>
-		<firstName>George</firstName>
-		<firstName>George</firstName>
-		<firstName>Lyndon</firstName>
-		<firstName>Richard</firstName>
-		<firstName>James</firstName>
-		<firstName>Ulysses</firstName>
-		<firstName>Andrew</firstName>
-		<firstName>Franklin</firstName>
-		<secondName>Smith</secondName>		
-		<secondName>Pierce</secondName>	
-		<secondName>Fillmore</secondName>	
-		<secondName>Harrison</secondName>	
-		<secondName>Roosevelt</secondName>	
-		<secondName>Wilson</secondName>	
-		<secondName>Washington</secondName>	
-		<secondName>Jackson</secondName>	
-		<secondName>Adams</secondName>	
-		<secondName>Jefferson</secondName>	
+		<firstname>Jon</firstname>
+		<firstname>George</firstname>
+		<firstname>George</firstname>
+		<firstname>Lyndon</firstname>
+		<firstname>Richard</firstname>
+		<firstname>James</firstname>
+		<firstname>Ulysses</firstname>
+		<firstname>Andrew</firstname>
+		<firstname>Franklin</firstname>
+		<secondname>Smith</secondname>		
+		<secondname>Pierce</secondname>	
+		<secondname>Fillmore</secondname>	
+		<secondname>Harrison</secondname>	
+		<secondname>Roosevelt</secondname>	
+		<secondname>Wilson</secondname>	
+		<secondname>Washington</secondname>	
+		<secondname>Jackson</secondname>	
+		<secondname>Adams</secondname>	
+		<secondname>Jefferson</secondname>	
 	</fullnames>
 	<staff name="New York" type="state">
 		<city name="New York" phonecode="+1 212">
