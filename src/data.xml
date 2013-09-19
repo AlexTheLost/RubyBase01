@@ -10,7 +10,7 @@
 		<firstName>Александр</firstName>
 		<firstName>Ян</firstName>
 		<firstName>Станислав</firstName>
-		<firstName>Игорь</firstName>
+		<firstName>Владимир</firstName>
 		<firstName>Михаил</firstName>
 		<firstName>Константин</firstName>
 		<firstName>Павел</firstName>
@@ -19,13 +19,14 @@
 		<secondName>Белькевич</secondName>		
 		<secondName>Ластовский</secondName>	
 		<secondName>Пичета</secondName>	
+		<secondName>Короткеви</secondName>	
 		<secondName>Довнар</secondName>	
 		<secondName>Машкевич</secondName>	
 		<secondName>Дудкович</secondName>	
 		<secondName>Радзивил</secondName>	
 		<secondName>Сапега</secondName>	
 		<secondName>Середа</secondName>	
-		<secondName>Лесик</secondName>	
+		<secondName>Лесик</secondName>			
 	</fullnames>
 	<staff name="NONE" type="область">
 		<city name="Минск" phonecode="+375 17">
@@ -62,31 +63,75 @@
 					<habitationnumber prefix="квартира" firstnumber="1" lastnumber="5" />
 				</house>
 				<house number="6а" postcode="230025">
-					<habitationnumber prefix="дом" firstnumber="1" lastnumber="1" />
+					<habitationnumber prefix="квартира" firstnumber="1" lastnumber="3" />
 				</house>				
 			</street>			
 		</city>
 	</staff>	
 </country>
 
-<country name="">
+<country name="BY">
 	<fullnames>
-		<firstName>
-		</firstName>
-		<secondName>
-		</secondName>		
+		<firstName>Василий</firstName>
+		<firstName>Инокентий</firstName>
+		<firstName>Иван</firstName>
+		<firstName>Николай</firstName>
+		<firstName>Лев</firstName>
+		<firstName>Константин</firstName>
+		<firstName>Павел</firstName>
+		<firstName>Арсений</firstName>
+		<firstName>Ананьин</firstName>
+		<secondName>Андреевич</secondName>		
+		<secondName>Медведь</secondName>	
+		<secondName>Говорунов</secondName>	
+		<secondName>Пахарь</secondName>	
+		<secondName>Быстров</secondName>	
+		<secondName>Возжин</secondName>	
+		<secondName>Заяц</secondName>	
+		<secondName>Дорогин</secondName>	
+		<secondName>Толстой</secondName>	
+		<secondName>Гоголь</secondName>	
 	</fullnames>
-	<staff name="">
-		<city name="" phonecode="">
-			<street name="">
-				<house number="" postcode="">
-					<telephone_number></telephone_number>
-					<!-- prefix: suite, flat, office квартира, оффис -->
-					<habitationnumber prefix=""></habitationnumber>
+	<staff name="Кировская" type="область">
+		<city name="Зуевка" phonecode="+7 83337">
+			<street name="Базарная" type="улица">
+				<house number="20" postcode="612410">					
+					<habitationnumber prefix="квартира" firstnumber="1" lastnumber="12" />
 				</house>
+				<house number="5" postcode="612410">
+					<habitationnumber prefix="квартира" firstnumber="1" lastnumber="7" />
+				</house>				
 			</street>
+			<street name="Куйбышева" type="улица">
+				<house number="1" postcode="612410">					
+					<habitationnumber prefix="квартира" firstnumber="1" lastnumber="11" />
+				</house>
+				<house number="4" postcode="612410">
+					<habitationnumber prefix="квартира" firstnumber="1" lastnumber="15" />
+				</house>				
+			</street>			
 		</city>
 	</staff>
+	<staff name="Гродненская" type="область">
+		<city name="Мытищи" phonecode="+7 495">
+			<street name="Карпинская" type="улица">
+				<house number="20" postcode="141000">					
+					<habitationnumber prefix="квартира" firstnumber="1" lastnumber="250" />
+				</house>
+				<house number="50" postcode="141004">
+					<habitationnumber prefix="квартира" firstnumber="1" lastnumber="130" />
+				</house>				
+			</street>
+			<street name="Петровская" type="улица">
+				<house number="70а" postcode="141019">					
+					<habitationnumber prefix="квартира" firstnumber="1" lastnumber="50" />
+				</house>
+				<house number="16" postcode="141021">
+					<habitationnumber prefix="квартира" firstnumber="1" lastnumber="140" />
+				</house>				
+			</street>			
+		</city>
+	</staff>	
 </country>
 
 <country name="">
