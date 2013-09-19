@@ -176,7 +176,7 @@
 	</fullnames>
 	<state name="New York" type="state">
 		<city name="New York" phonecode="+1 212">
-			<street name="5th and Madison" type="avenues">
+			<street name="5th and Madison" type="avenue">
 				<house number="1" postcode="10001">					
 					<habitationnumber prefix="suite" firstnumber="110" lastnumber="115" />
 					<habitationnumber prefix="apartment" firstnumber="50" lastnumber="100" />
@@ -186,7 +186,7 @@
 					<habitationnumber prefix="office" firstnumber="1" lastnumber="300" />
 				</house>				
 			</street>
-			<street name="1st and York" type="avenues">
+			<street name="1st and York" type="avenue">
 				<house number="10" postcode="10041">					
 					<habitationnumber prefix="office" firstnumber="1" lastnumber="200" />
 				</house>

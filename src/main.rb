@@ -1,7 +1,7 @@
 require 'xmlsimple'
 
 # config:
-COUNTRY = "RU"
+COUNTRY = "US"
 NUMBER_OF_RESULT = 10
 PROBABYLITY_OF_ERROR = 1
 
@@ -20,18 +20,37 @@ def getRandomState(states)
 		stateName = ""
 	end	
 	currentXMLBlock = states[randomNumState]
-	return [stateName, currentXMLBlock]
+	return stateName, currentXMLBlock
 end
 
 def getRandomCity(cities)
 	randomNumCity = Random.rand(cities.length)
 	randomCity = cities[randomNumCity]['name']
 	currentXMLBlock = cities[randomNumCity]
-	return [randomCity, currentXMLBlock]	
+	return randomCity, currentXMLBlock	
 end
 
-# puts config['country']['US']['fullnames'][0]['secondName']
-#, {'KeyAttr' => 'name'}
+def getRandomPhone(city)	
+	phoneCode = city['phonecode']
+	randomPhone = ""
+	i = 0
+	while i < 7 do
+		if i == 3
+			randomPhone += " "
+		end
+		randomPhone += Random.rand(10).to_s()
+		i += 1
+	end
+
+	return (phoneCode + " " + randomPhone).gsub!(" ", "-")
+end
+
+def getRandomStreet(streets)
+	randomNumStreet = Random.rand(streets.length)	
+	randomStreet = streets[randomNumStreet]['name'] + " " + streets[randomNumStreet]['type']
+	currentXMLBlock = streets[randomNumStreet]
+	return randomStreet, currentXMLBlock
+end
 
 data = XmlSimple.xml_in('resurse/data.xml')
 countries = data['country']
@@ -48,9 +67,13 @@ for country in countries
 
 		city, currentXMLBlock = getRandomCity(currentXMLBlock['city'])
 		puts city
+
+		phone = getRandomPhone(currentXMLBlock)
+		puts phone 
 		
-		# puts fullName
-		# puts information
+		street, currentXMLBlock = getRandomStreet(currentXMLBlock['street'])
+		puts street
+
 	end
 end
 
