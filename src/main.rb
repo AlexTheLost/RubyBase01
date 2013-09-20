@@ -1,149 +1,5 @@
 require 'xmlsimple'
 
-# test config:
-COUNTRY = "US"
-numberOfResult = 10
-numberOfResult = 1
-
-def getRandomFullName(fullNames)
-	firstNames = fullNames[0]['firstname']
-	secondNames = fullNames[0]['secondname']
-	randomNumFirstName = Random.rand(firstNames.length)
-	randomNumSecondName = Random.rand(secondNames.length)
-	return firstNames[randomNumFirstName] + " " + secondNames[randomNumSecondName]
-end
-
-def getRandomState(states)
-	randomNumState = Random.rand(states.length)	
-	stateName = states[randomNumState]['name']	
-	currentXMLBlock = states[randomNumState]
-	return stateName, currentXMLBlock
-end
-
-def getRandomCity(locality)
-	randomNumCity = Random.rand(locality.length)
-	randomCity = locality[randomNumCity]['name']
-	currentXMLBlock = locality[randomNumCity]
-	return randomCity, currentXMLBlock	
-end
-
-def getRandomPhone(city)	
-	phoneCode = city['phonecode']
-	randomPhone = ""
-	i = 0
-	while i < 7 do
-		if i == 3
-			randomPhone += " "
-		end
-		randomPhone += Random.rand(10).to_s()
-		i += 1
-	end
-
-	return (phoneCode + " " + randomPhone).gsub!(" ", "-")
-end
-
-def getRandomStreet(streets)
-	randomNumStreet = Random.rand(streets.length)	
-	randomStreet = [streets[randomNumStreet]['name'], streets[randomNumStreet]['type']]
-	currentXMLBlock = streets[randomNumStreet]
-	return randomStreet, currentXMLBlock
-end
-
-def getRandomHouseAndOther(houses)
-	randomNumHouse = Random.rand(houses.length)
-	randomHouse = houses[randomNumHouse]['number']
-	postCode = houses[randomNumHouse]['postcode']
-	
-	randomNumFlat = Random.rand(houses[randomNumHouse]['habitationnumber'].length)
-	randomFlat = houses[randomNumHouse]['habitationnumber'][randomNumFlat]
-	firstNumberFlat = randomFlat['firstnumber'].to_i()
-	lastNumberFlat = randomFlat['lastnumber'].to_i()
-	flatNumber = Random.rand(firstNumberFlat...lastNumberFlat)
-
-	typeOfHousing = randomFlat['prefix']
-	flatNumber = [typeOfHousing, flatNumber.to_s()]
-
-	return [randomHouse, postCode, flatNumber]
-end
-
-def getInfoForUS(addr)
-	res = addr['houseNumber'] + ", "
-	res += addr['street'] + ", "
-	res += addr['flatNumber'] + ", "
-	res += addr['state'] + ", "
-	res += addr['city'] + ", "
-	res += addr['postCode'] + ", "
-	res += addr ['country']
-	return res
-end
-
-def getSNGaddresss(addr)
-	res = addr['street'][1] + " " + addr['street'][0] + ", "
-	res += addr['houseNumber'] + ", "
-	res += addr['flatNumber'][1] + ", "
-	res += addr['city'] + ", "
-	# res += addr['state'] + ", "
-	res += addr['postCode'] + ", "
-	res += addr ['country']
-	return res
-end
-
-# def getCountryName(abbreviation)
-# 	case abbreviation
-# 	when abbreviation == "US" 
-# 		return "USA"
-# 	when abbreviation == "BY"
-# 		return "Беларусь"
-# 	when abbreviation == "RU" 
-# 		return "SDF"
-# 	else 
-# 		return "The country is not defined!"
-# 	end
-# end
-
-
-
-data = XmlSimple.xml_in('resurse/data.xml')
-countries = data['country']
-
-resultVal = ""
-address = {}
-
-# for country in countries
-# 	if (countryName = country['name']) == COUNTRY
-# 		fullName = getRandomFullName(country['fullnames'])
-		
-
-# 		state , currentXMLBlock = getRandomState(country['state'])		
-# 		address['state'] = state
-
-# 		city, currentXMLBlock = getRandomCity(currentXMLBlock['city'])
-# 		address['city'] = city
-
-# 		phone = getRandomPhone(currentXMLBlock)
-
-# 		street, currentXMLBlock = getRandomStreet(currentXMLBlock['street'])
-# 		address['street'] = street
-
-# 		houseNumber, postCode, flatNumber = getRandomHouseAndOther(currentXMLBlock['house'])
-# <<<<<<< HEAD
-# 		# puts (fullName + "; " + houseNumber + " " + street + ", " + flatNumber + " ," + state + ", " + city + ", " + postCode + ", " + country['name'] + "; " + phone)
-# =======
-# 		address['houseNumber'] = houseNumber
-# 		address['postCode'] = postCode
-# 		address['flatNumber'] = flatNumber
-# 		address['country'] =  countryName
-
-
-# 		address = getInfoForUS(address) if countryName == "US"
-# 		address = getSNGaddresss(address) if countryName== "BY" || countryName == "RU"
-
-
-# 		puts (fullName + "; " + address + "; " + phone)
-# >>>>>>> 3fe2cb57ff998c27564f6cb4ee0eed995d39ece4
-# 	end
-# end
-
 class Address
 	@selectedCountry = "BY"
 	@numberOfResult = 10
@@ -159,6 +15,7 @@ class Address
 		@SEPARATOR_LOW = " "
 		@SEPARATOR_MIDDLE = ", "
 		@SEPARATOR_HIGH = "; "
+
 	end
 
 	def iterator()
@@ -197,97 +54,33 @@ class Address
 		end
 	end
 
+	def getDataSet()
+		data = XmlSimple.xml_in(@PATH_OT_DATA_FILE)	
+		loadAbbreviations(data)	
+		dataForCountry = getDataForCoutry(data)						
+		puts person = getPersonData(dataForCountry)
+	end	
+
 	def loadAbbreviations(data)
 		@abbreviations = {}
 		abbreviations = data['abbreviations'][0]['abbreviation']
 		for abbreviation in abbreviations
 			@abbreviations[abbreviation['name']] = abbreviation['content']
 		end
-	end
+	end	
 
-	def getAbbreviations(word)
-		if @abbreviations[word]
-			return @abbreviations[word] 
-		else
-			return word
-		end
-	end
-
-	def getDataSet()		
-		data = XmlSimple.xml_in(@PATH_OT_DATA_FILE)
-		loadAbbreviations(data)
-
+	def getDataForCoutry(data)
 		setCountries = data['country']
-		dataForCountry = getCoutry(setCountries)
-
-		
-		puts person = getLocalizeData(dataForCountry)
-
-	end
-
-	def getLocalizeData(dataForCountry)
-		randomFullName = getRandomFullName(dataForCountry)
-		randomInfo = getRandomInfo(dataForCountry)
-		infoInString = ""
-		if @selectedCountry == "US"
-			infoInString = getInfoForUS(randomInfo)
-		elsif @selectedCountry == "RU" || @selectedCountry == "BY"
-			infoInString = getInfoForSNG(randomInfo)
-		else
-			infoInString = @selectedCountry + " not found!"
-		end
-		fullName = randomFullName[0] + " " + randomFullName[1]
-		res = fullName
-		res += @SEPARATOR_HIGH
-		res += infoInString
-		return res
-	end
-
-
-
-	def getInfoForUS(info)
-		res = info['house'] + @SEPARATOR_LOW + info['street']['name'] + @SEPARATOR_LOW + info['street']['type']
-		res += @SEPARATOR_MIDDLE
-		res += info['typeOfHousing'] + @SEPARATOR_LOW + info['flatNumber']
-		res += @SEPARATOR_MIDDLE
-		res += info['state']['name']
-		res += @SEPARATOR_MIDDLE
-		res += info['locality']['name']
-		res += @SEPARATOR_MIDDLE
-		res += info['postCode']
-		res += @SEPARATOR_MIDDLE
-		res += info['country']
-		res += @SEPARATOR_HIGH
-		res += info['phone']
-		return res
-	end
-
-	def getInfoForSNG(info)
-		res = getAbbreviations(info['street']['type']) + @SEPARATOR_LOW + info['street']['name']
-		res += @SEPARATOR_MIDDLE
-		res += info['house']
-		res += @SEPARATOR_MIDDLE
-		res += info['flatNumber']
-		res += @SEPARATOR_MIDDLE
-		res += getAbbreviations(info['locality']['type']) + @SEPARATOR_LOW + info['locality']['name']
-		res += @SEPARATOR_MIDDLE
-		res += info['postCode']
-		res += @SEPARATOR_MIDDLE
-		res += info['country']
-		res += @SEPARATOR_HIGH
-		res += info['phone']
-		return res
-	end
-
-	# def toUpperCaseFirstSymbol(str)
-	# 	return str[0].upcase() + str[1..-1]
-	# end
-
-
-	def getCoutry(setCountries)
 		for country in setCountries
 			return country if country['abbreviation'] == @selectedCountry
 		end
+	end
+
+	def getPersonData(dataForCountry)		
+		randomFullName = getRandomFullName(dataForCountry)
+		randomInfo = getRandomInfo(dataForCountry)	
+		personData = getLocalizeData(randomFullName, randomInfo)
+		return personData
 	end
 
 	def getRandomFullName(dataForCountry)
@@ -296,7 +89,7 @@ class Address
 		setSecondNames = setFullName[0]['secondname']
 		randomNumFirstName = Random.rand(setFirstNames.length)
 		randomNumSecondName = Random.rand(setSecondNames.length)
-		return [setFirstNames[randomNumFirstName], setSecondNames[randomNumSecondName]]
+		return {'firstname' => setFirstNames[randomNumFirstName], 'secondname' => setSecondNames[randomNumSecondName]}
 	end
 
 	def getRandomInfo(dataForCountry)
@@ -365,9 +158,71 @@ class Address
 		return [flatNumber, typeOfHousing]
 	end
 
+	def getLocalizeData(fullName, info)
+		if @selectedCountry == "US"
+			localizeFullName = fullName['firstname'] + " " + fullName['secondname']
+			localizeInfo = getInfoForUS(info)
+		elsif @selectedCountry == "RU" || @selectedCountry == "BY"
+			localizeFullName = fullName['secondname'] + " " + fullName['firstname']
+			localizeInfo = getInfoForSNG(info)
+		else
+			return @selectedCountry + " not found!"
+		end		
+		return localizeFullName + @SEPARATOR_HIGH + localizeInfo
+	end	
+
+	def getInfoForUS(info)
+		res = info['house'] + @SEPARATOR_LOW + info['street']['name'] + @SEPARATOR_LOW + toUpperCaseFirstSymbol(info['street']['type'])
+		res += @SEPARATOR_MIDDLE
+		res += toUpperCaseFirstSymbol(info['typeOfHousing']) + @SEPARATOR_LOW + info['flatNumber']
+		res += @SEPARATOR_MIDDLE
+		res += info['state']['name']
+		res += @SEPARATOR_MIDDLE
+		res += info['locality']['name']
+		res += @SEPARATOR_MIDDLE
+		res += info['postCode']
+		res += @SEPARATOR_MIDDLE
+		res += info['country']
+		res += @SEPARATOR_HIGH
+		res += info['phone']
+		return res
+	end
+
+	def toUpperCaseFirstSymbol(str)
+		return str[0].upcase() + str[1..-1]
+	end
+
+	def getInfoForSNG(info)
+		res = getAbbreviations(info['street']['type']) + @SEPARATOR_LOW + info['street']['name']
+		res += @SEPARATOR_MIDDLE
+		res += info['house']
+		res += @SEPARATOR_MIDDLE
+		res += info['flatNumber']
+		res += @SEPARATOR_MIDDLE
+		res += getAbbreviations(info['locality']['type']) + @SEPARATOR_LOW + info['locality']['name']
+		res += @SEPARATOR_MIDDLE
+		res += info['postCode']
+		res += @SEPARATOR_MIDDLE
+		res += info['country']
+		res += @SEPARATOR_HIGH
+		res += info['phone']
+		return res
+	end
+
+	def getAbbreviations(word)
+		if @abbreviations[word]
+			return @abbreviations[word] 
+		else
+			return word
+		end
+	end
 end
 
 addr = Address.new()
+addr.setParameters("BY", 10 , 1)
+addr.iterator()
+addr.setParameters("US", 10 , 1)
+addr.iterator()
 addr.setParameters("RU", 10 , 1)
 iter = addr.iterator()
 
