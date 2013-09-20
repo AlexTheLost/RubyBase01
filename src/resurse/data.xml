@@ -68,6 +68,24 @@
 				</house>				
 			</street>			
 		</city>
+		<city name="TEST_Гродно" phonecode="+375 15">
+			<street name="Гонионская" type="улица">
+				<house number="48" postcode="230027">					
+					<habitationnumber prefix="квартира" firstnumber="1" lastnumber="25" />
+				</house>
+				<house number="74" postcode="230027">
+					<habitationnumber prefix="квартира" firstnumber="1" lastnumber="30" />
+				</house>				
+			</street>
+			<street name="Красноармейская" type="улица">
+				<house number="1а" postcode="230025">					
+					<habitationnumber prefix="квартира" firstnumber="1" lastnumber="5" />
+				</house>
+				<house number="6а" postcode="230025">
+					<habitationnumber prefix="квартира" firstnumber="1" lastnumber="3" />
+				</house>				
+			</street>			
+		</city>
 	</state>	
 </country>
 

@@ -2,8 +2,8 @@ require 'xmlsimple'
 
 # test config:
 COUNTRY = "BY"
-NUMBER_OF_RESULT = 10
-PROBABYLITY_OF_ERROR = 1
+numberOfResult = 10
+numberOfResult = 1
 
 def getRandomFullName(fullNames)
 	firstNames = fullNames[0]['firstname']
@@ -82,7 +82,121 @@ for country in countries
 		phone = getRandomPhone(currentXMLBlock)
 		street, currentXMLBlock = getRandomStreet(currentXMLBlock['street'])
 		houseNumber, postCode, flatNumber = getRandomHouseAndOther(currentXMLBlock['house'])
-		puts (fullName + "; " + houseNumber + " " + street + ", " + flatNumber + " ," + state + ", " + city + ", " + postCode + ", " + country['name'] + "; " + phone)
+		# puts (fullName + "; " + houseNumber + " " + street + ", " + flatNumber + " ," + state + ", " + city + ", " + postCode + ", " + country['name'] + "; " + phone)
 	end
 end
 
+class Address
+	@selectedCountry = "BY"
+	@numberOfResult = 10
+	@probabilityOfError = 1
+
+	def setParameters(selectedCountry, numberOfResult, probabilityOfError)
+		@PATH_OT_DATA_FILE = "resurse/data.xml"
+		@selectedCountry = selectedCountry
+		@numberOfResult = numberOfResult
+		@probabilityOfError = probabilityOfError		
+	end
+
+	def iterator()
+		getDataSet()
+
+		res = ["a", "b", "c"]
+		return Iterator.new(res)
+	end
+
+	class Iterator
+		@arrayOfString = []
+		@index = 0
+		@index_max = 0
+
+		def initialize(arrayOfString)
+			@arrayOfString = arrayOfString
+			@index_max = arrayOfString.length
+			@index = 0
+		end
+
+		def hasNext()
+			if @index >= @index_max
+				return false
+			else
+				return true
+			end
+		end
+		
+		def next()
+			res = @arrayOfString[@index]	
+			@index += 1
+			return res	
+		end
+
+		def delete()
+		end
+	end
+
+	def getDataSet()		
+		data = XmlSimple.xml_in(@PATH_OT_DATA_FILE)
+		setCountries = data['country']
+		country = getCoutry(setCountries)
+
+		randomFullName = getRandomFullName(country)
+		puts randomLocation = getRandomLocation(country)
+
+	end
+
+	def getCoutry(setCountries)
+		for country in setCountries
+			return country if country['name'] == @selectedCountry
+		end
+	end
+
+	def getRandomFullName(country)
+		setFullName = country['fullnames']
+		setFirstNames = setFullName[0]['firstname']
+		setSecondNames = setFullName[0]['secondname']
+		randomNumFirstName = Random.rand(setFirstNames.length)
+		randomNumSecondName = Random.rand(setSecondNames.length)
+		return [setFirstNames[randomNumFirstName], setSecondNames[randomNumSecondName]]
+	end
+
+	def getRandomLocation(country)
+		setStates = country['state']
+		randomNumState = Random.rand(setStates.length)	
+		randomState = setStates[randomNumState]
+		nameState = randomState['name']
+
+		setCities = randomState['city']
+		randomNumCity = Random.rand(setCities.length)		
+		randomCity = setCities[randomNumCity]
+		cityName = randomCity['name']
+
+		phoneCode = randomCity['phonecode'].gsub!(" ", "-")		
+		phoone = phoneCode + "-" + getRandomPhone()
+
+		
+	
+	end
+
+	def getRandomPhone()
+		phone = ""
+		i = 0
+		while i < 7 do
+			if i == 3
+				phone += " "
+			end
+			phone += Random.rand(10).to_s()
+			i += 1
+		end
+		return phone.gsub!(" ", "-")			
+	end
+
+end
+
+
+addr = Address.new()
+addr.setParameters("BY", 10 , 1)
+iter = addr.iterator()
+
+# while iter.hasNext()
+# 	puts iter.next()
+# end	
