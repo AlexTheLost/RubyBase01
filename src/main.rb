@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 require 'xmlsimple'
+require 'set'
 
 class Address	
 	def initialize()
@@ -22,53 +23,24 @@ class Address
 		@probabilityOfError = probabilityOfError	
 	end
 
-	def iterator()
-		getDataSet()
-
-		res = ["a", "b", "c"]
-		return Iterator.new(res)
-	end
-
-	class Iterator
-		@arrayOfString = []
-		@index = 0
-		@index_max = 0
-
-		def initialize(arrayOfString)
-			@arrayOfString = arrayOfString
-			@index_max = arrayOfString.length
-			@index = 0
-		end
-
-		def hasNext()
-			if @index >= @index_max
-				return false
-			else
-				return true
-			end
-		end
-		
-		def next()
-			res = @arrayOfString[@index]	
-			@index += 1
-			return res	
-		end
-
-		def delete()			
-		end
-	end
-
-	def getDataSet()
+	def createDataSet()
 		data = XmlSimple.xml_in(@PATH_OT_DATA_FILE)	
 		loadAbbreviations(data)	
 		dataForCountry = getDataForCoutry(data)						
-		person = getPersonData(dataForCountry)
-		if isError()
-			puts "Create Error!:"
-			person = createError(person)			
-		end
-		puts person
+		puts getSetPersonData(dataForCountry)
 	end	
+
+	def getSetPersonData(dataForCountry)		
+		setData = Set.new
+		i = 0
+		while i < @numberOfResult
+			person = getPersonData(dataForCountry)
+			person = createError(person) if isError()			
+			setData.add "#{i+1}: " + person	
+			i += 1				
+		end
+		return setData.to_a()
+	end
 
 	def isError()
 		probabilityOfError = (@probabilityOfError * 100).ceil()
@@ -82,23 +54,17 @@ class Address
 	def createError(string)
 		numberOfError = Random.rand(6)
 		case numberOfError
-		when 0
-			puts "Error 0:"
+		when 0			
 			return permutationNumber(string)
-		when 1
-			puts "Error 1"		
+		when 1	
 			return replaseRandomNamber(string)
 		when 2
-			puts "Error 2"
 			return deleteRandomLette(string)
 		when 3
-			puts "Error 3"
 			return duplicateLetter(string)
 		when 4
-			puts "Error 4"
 			return replaseRandomAdjacentLetters(string)
 		when 5
-			puts "Error 5"	
 			return addRandomLette(string)
 		end											
 	end
@@ -131,7 +97,7 @@ class Address
 		numberPair = Random.rand(pairPermutation.length)
 		first, second = pairPermutation[numberPair][0], pairPermutation[numberPair][1]
 		string[first], string[second] = string[second], string[first]
-		puts string 
+		return string 
 	end
 
 	def searchPositionAllLetters(string)
@@ -252,6 +218,9 @@ class Address
 		randomState = getRandomSate(dataForCountry)
 		location['state'] = {'type' => randomState['type'], 'name' => randomState['name']}	
 		randomCity = getRandomCity(randomState)
+
+		# puts "!!!!!!-- " + randomCity.to_s + "--!!!!!!!"
+
 		location['locality'] = {'type' => randomCity['type'], 'name' => randomCity['name']}
 		location['phone'] = getRandomPhone(randomCity)
 		randomStreet = getRandomStreet(randomCity)
@@ -269,24 +238,24 @@ class Address
 		randomState = setStates[randomNumState]		
 	end
 
-	def getRandomCity(state)
+	def getRandomCity(state)		
 		setLocality = state['locality']
 		randomNumCity = Random.rand(setLocality.length)		
 		randomCity = setLocality[randomNumCity]
 	end
 
-	def getRandomPhone(city)
-		code = city['phonecode'].gsub!(" ", "-")		
+	def getRandomPhone(city)	
+		code = city['phonecode']		
 		phone = ""
 		i = 0
 		while i < 7 do
 			if i == 3
-				phone += " "
+				phone += "-"
 			end
 			phone += Random.rand(10).to_s()
 			i += 1
 		end
-		return code + "-" + phone.gsub!(" ", "-")			
+		return code + "-" + phone			
 	end
 
 	def getRandomStreet(city)		
@@ -373,13 +342,5 @@ class Address
 end
 
 addr = Address.new()
-addr.setParameters("BY", 10 , 1)
-addr.iterator()
-# addr.setParameters("US", 10 , 1)
-# addr.iterator()
-# addr.setParameters("RU", 10 , 1)
-# iter = addr.iterator()
-
-# while iter.hasNext()
-# 	puts iter.next()
-# end	
+addr.setParameters("RU", 1000 , 0.5)
+addr.createDataSet()
