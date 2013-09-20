@@ -30,7 +30,7 @@
 		<secondname>Лесик</secondname>			
 	</fullnames>
 	<state name="NONE" type="область">
-		<city name="Минск" type="город" phonecode="+375 17">
+		<locality name="Минск" type="город" phonecode="+375 17">
 			<street name="Авакяна" type="улица">
 				<house number="10" postcode="220039">					
 					<habitationnumber prefix="квартира" firstnumber="1" lastnumber="100" />
@@ -48,10 +48,10 @@
 					<habitationnumber prefix="квартира" firstnumber="1" lastnumber="150" />
 				</house>				
 			</street>			
-		</city>
+		</locality>
 	</state>
 	<state name="Гродненская" type="область">
-		<city name="Гродно" type="город" phonecode="+375 15">
+		<locality name="Гродно" type="город" phonecode="+375 15">
 			<street name="Гонионская" type="улица">
 				<house number="48" postcode="230027">					
 					<habitationnumber prefix="квартира" firstnumber="1" lastnumber="25" />
@@ -68,8 +68,8 @@
 					<habitationnumber prefix="квартира" firstnumber="1" lastnumber="3" />
 				</house>				
 			</street>			
-		</city>
-		<city name="TEST_Гродно" type="город" phonecode="+375 15">
+		</locality>
+		<locality name="TEST_Гродно" type="город" phonecode="+375 15">
 			<street name="Гонионская" type="улица">
 				<house number="48" postcode="230027">					
 					<habitationnumber prefix="квартира" firstnumber="1" lastnumber="25" />
@@ -86,11 +86,11 @@
 					<habitationnumber prefix="квартира" firstnumber="1" lastnumber="3" />
 				</house>				
 			</street>			
-		</city>
+		</locality>
 	</state>	
 </country>
 
-<country name="Россия" abbreviation="RU">
+<country name="Россия" abbreviation="RU">	
 	<fullnames>
 		<firstname>Василий</firstname>
 		<firstname>Инокентий</firstname>
@@ -113,7 +113,7 @@
 		<secondname>Гоголь</secondname>	
 	</fullnames>
 	<state name="Кировская" type="область">
-		<city name="Зуевка" type="город" phonecode="+7 83337">
+		<locality name="Зуевка" type="город" phonecode="+7 83337">
 			<street name="Базарная" type="улица">
 				<house number="20" postcode="612410">					
 					<habitationnumber prefix="квартира" firstnumber="1" lastnumber="12" />
@@ -130,8 +130,8 @@
 					<habitationnumber prefix="квартира" firstnumber="1" lastnumber="15" />
 				</house>				
 			</street>			
-		</city>
-		<city name="Тестовка" type="город" phonecode="+7 83337">
+		</locality>
+		<locality name="Тестовка" type="город" phonecode="+7 83337">
 			<street name="Базарная" type="улица">
 				<house number="20" postcode="612410">					
 					<habitationnumber prefix="квартира" firstnumber="1" lastnumber="12" />
@@ -148,10 +148,10 @@
 					<habitationnumber prefix="квартира" firstnumber="1" lastnumber="15" />
 				</house>				
 			</street>			
-		</city>		
+		</locality>		
 	</state>
 	<state name="Московская" type="область">
-		<city name="Мытищи" type="город" phonecode="+7 495">
+		<locality name="Мытищи" type="город" phonecode="+7 495">
 			<street name="Карпинская" type="улица">
 				<house number="20" postcode="141000">					
 					<habitationnumber prefix="квартира" firstnumber="1" lastnumber="250" />
@@ -168,7 +168,7 @@
 					<habitationnumber prefix="квартира" firstnumber="1" lastnumber="140" />
 				</house>				
 			</street>			
-		</city>
+		</locality>
 	</state>	
 </country>
 
@@ -194,7 +194,7 @@
 		<secondname>Jefferson</secondname>	
 	</fullnames>
 	<state name="New York" type="state">
-		<city name="New York" type="city" phonecode="+1 212">
+		<locality name="New York" type="city" phonecode="+1 212">
 			<street name="5th and Madison" type="avenue">
 				<house number="1" postcode="10001">					
 					<habitationnumber prefix="suite" firstnumber="110" lastnumber="115" />
@@ -214,8 +214,14 @@
 					<habitationnumber prefix="suite" firstnumber="160" lastnumber="175" />
 				</house>				
 			</street>			
-		</city>
+		</locality>
 	</state>	
 </country>
+
+	<abbreviations>
+		<abbreviation name="город">г.</abbreviation>
+		<abbreviation name="улица">ул.</abbreviation>
+		<abbreviation name="test">t.</abbreviation>
+	</abbreviations>
 
 </root>
