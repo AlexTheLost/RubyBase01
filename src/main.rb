@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require 'xmlsimple'
 
 class Address	
@@ -59,8 +61,8 @@ class Address
 		dataForCountry = getDataForCoutry(data)						
 		puts person = getPersonData(dataForCountry)
 		if isError()
-			person = createError(person)
 			puts "Create Error!:"
+			person = createError(person)			
 		end
 		return person
 	end	
@@ -76,46 +78,116 @@ class Address
 
 	def createError(string)
 		# numberOfError = Random.rand(6)
-		numberOfError = 0
+		numberOfError = 4
 		case numberOfError
 		when 0
-			puts "Error 1"
+			puts "Error 0:"
 			return permutationNumber(string)
 		when 1
-			puts "Error 2"			
+			puts "Error 1"		
+			return replaseRandomNamber(string)
 		when 2
-			puts "Error 3"
+			puts "Error 2"
+			return deleteRandomLette(string)
 		when 3
-			puts "Error 4"
+			puts "Error 3"
+			return duplicateLetter(string)
 		when 4
-			puts "Error 5"
+			puts "Error 4"
+			return replaseRandomAdjacentLetters(string)
 		when 5
-			puts "Error 6"	
+			puts "Error 5"	
 		end											
 	end
 
+	def replaseRandomAdjacentLetters(string)
+		positionLetters = searchPositionAllLetters(string)
+		pairPermutation = generatePairPermutation(positionLetters)
+		numberPair = Random.rand(pairPermutation.length)
+		first, second = pairPermutation[numberPair][0], pairPermutation[numberPair][1]
+		string[first], string[second] = string[second], string[first]
+		puts string 
+	end
+
+	def searchPositionAllLetters(string)
+		positionLetters = []		
+		i = 0
+		for symbol in string.split("")			
+			if symbol =~ /[а-яА-Яa-zA-Z]/
+				positionLetters.push i				
+			end
+			i += 1
+		end
+		return positionLetters
+	end
+
+	def duplicateLetter(string)
+		positionLetter = getRandomPositionLetter(string)
+		return string[0..positionLetter] + string[positionLetter] + string[(positionLetter + 1)..-1]
+	end
+
+	def deleteRandomLette(string)
+		positionLetter = getRandomPositionLetter(string)
+		string[positionLetter] = ""
+		return string
+	end
+
+	def getRandomPositionLetter(string)		
+		positionLetter = []		
+		i = 0
+		for symbol in string.split("")			
+			if symbol =~ /[а-яА-Яa-zA-Z]/
+				positionLetter.push i				
+			end
+			i += 1
+		end
+		randomPosition = Random.rand(positionLetter.length)
+		positionInString = positionLetter[randomPosition]
+		return positionInString
+	end
+
+	def replaseRandomNamber(string)
+		positionNumbers = searchPositionAllNumbers(string)
+		randomPosition = Random.rand(positionNumbers.length)
+		positionInString = positionNumbers[randomPosition]
+		randomNum = 0
+		while (randomNum = Random.rand(10)) == string[positionInString].to_i() 
+		end
+		string[positionInString] = randomNum.to_s()
+		return string
+	end	
+
 	def permutationNumber(string)
-		position = []		
+		positionNumbers = searchPositionAllNumbers(string)
+		pairPermutation = generatePairPermutation(positionNumbers)
+		numberPair = Random.rand(pairPermutation.length)
+		first, second = pairPermutation[numberPair][0], pairPermutation[numberPair][1]
+		string[first], string[second] = string[second], string[first]
+		return string 
+	end
+
+	def searchPositionAllNumbers(string)
+		positionNumbers = []		
 		i = 0
 		for symbol in string.split("")			
 			if symbol =~ /[0-9]/
-				position.push i				
+				positionNumbers.push i				
 			end
 			i += 1
 		end
-		puts position.join('/')
-		# i = 1
-		# while i < position.length
+		return positionNumbers
+	end
 
-		final = []
+	def generatePairPermutation(positionNumbers)
+		pairPermutation = []
 		i = 0 
-		while i < (position.length - 1)
-			if position[i] == (position[i+1] - 1)
-				final.push [position[i], position[i+1]] 
+		while i < (positionNumbers.length - 1)
+			if positionNumbers[i] == (positionNumbers[i+1] - 1)
+				pairPermutation.push [positionNumbers[i], positionNumbers[i+1]] 
 			end
 			i += 1
 		end
-		puts final.join('|')	
+		return pairPermutation
 	end
 
 	def loadAbbreviations(data)

@@ -1,8 +1,3 @@
-string = "ab6c123"
-
-puts string[]
-# for symbol in string.split("")
-# 	if symbol =~ /[0-9]/
-# 		puts symbol
-# 	end
-# end
+s = "abc"
+s[1..-1] = "AA"
+puts s
