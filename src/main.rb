@@ -173,8 +173,9 @@ class Address
 		phoneCode = randomCity['phonecode'].gsub!(" ", "-")		
 		phoone = phoneCode + "-" + getRandomPhone()
 
-		
-	
+		setStreests = randomCity['street']
+		randomNumStreet = Random.rand(setStreests.length)	
+		randomStreet = [setStreests[randomNumStreet]['name'], setStreests[randomNumStreet]['type']]	
 	end
 
 	def getRandomPhone()
