@@ -15,10 +15,7 @@ end
 
 def getRandomState(states)
 	randomNumState = Random.rand(states.length)	
-	stateName = states[randomNumState]['name']
-	if stateName == "NONE"
-		stateName = ""
-	end	
+	stateName = states[randomNumState]['name']	
 	currentXMLBlock = states[randomNumState]
 	return stateName, currentXMLBlock
 end
@@ -47,7 +44,7 @@ end
 
 def getRandomStreet(streets)
 	randomNumStreet = Random.rand(streets.length)	
-	randomStreet = streets[randomNumStreet]['name'] + " " + streets[randomNumStreet]['type']
+	randomStreet = [streets[randomNumStreet]['name'], streets[randomNumStreet]['type']]
 	currentXMLBlock = streets[randomNumStreet]
 	return randomStreet, currentXMLBlock
 end
@@ -64,27 +61,88 @@ def getRandomHouseAndOther(houses)
 	flatNumber = Random.rand(firstNumberFlat...lastNumberFlat)
 
 	typeOfHousing = randomFlat['prefix']
-	flatNumber = typeOfHousing + " " + flatNumber.to_s()
+	flatNumber = [typeOfHousing, flatNumber.to_s()]
 
 	return [randomHouse, postCode, flatNumber]
 end
+
+def getUSaddresss(addr)
+	res = addr['houseNumber'] + ", "
+	res += addr['street'] + ", "
+	res += addr['flatNumber'] + ", "
+	res += addr['state'] + ", "
+	res += addr['city'] + ", "
+	res += addr['postCode'] + ", "
+	res += addr ['country']
+	return res
+end
+
+def getSNGaddresss(addr)
+	res = addr['street'][1] + " " + addr['street'][0] + ", "
+	res += addr['houseNumber'] + ", "
+	res += addr['flatNumber'][1] + ", "
+	res += addr['city'] + ", "
+	# res += addr['state'] + ", "
+	res += addr['postCode'] + ", "
+	res += addr ['country']
+	return res
+end
+
+# def getCountryName(abbreviation)
+# 	case abbreviation
+# 	when abbreviation == "US" 
+# 		return "USA"
+# 	when abbreviation == "BY"
+# 		return "Беларусь"
+# 	when abbreviation == "RU" 
+# 		return "SDF"
+# 	else 
+# 		return "The country is not defined!"
+# 	end
+# end
+
 
 
 data = XmlSimple.xml_in('resurse/data.xml')
 countries = data['country']
 
+resultVal = ""
+address = {}
 
-for country in countries
-	if country['name'] == COUNTRY
-		fullName = getRandomFullName(country['fullnames'])	
-		state , currentXMLBlock = getRandomState(country['state'])
-		city, currentXMLBlock = getRandomCity(currentXMLBlock['city'])
-		phone = getRandomPhone(currentXMLBlock)
-		street, currentXMLBlock = getRandomStreet(currentXMLBlock['street'])
-		houseNumber, postCode, flatNumber = getRandomHouseAndOther(currentXMLBlock['house'])
-		# puts (fullName + "; " + houseNumber + " " + street + ", " + flatNumber + " ," + state + ", " + city + ", " + postCode + ", " + country['name'] + "; " + phone)
-	end
-end
+# for country in countries
+# 	if (countryName = country['name']) == COUNTRY
+# 		fullName = getRandomFullName(country['fullnames'])
+		
+
+# 		state , currentXMLBlock = getRandomState(country['state'])		
+# 		address['state'] = state
+
+# 		city, currentXMLBlock = getRandomCity(currentXMLBlock['city'])
+# 		address['city'] = city
+
+# 		phone = getRandomPhone(currentXMLBlock)
+
+# 		street, currentXMLBlock = getRandomStreet(currentXMLBlock['street'])
+# 		address['street'] = street
+
+# 		houseNumber, postCode, flatNumber = getRandomHouseAndOther(currentXMLBlock['house'])
+# <<<<<<< HEAD
+# 		# puts (fullName + "; " + houseNumber + " " + street + ", " + flatNumber + " ," + state + ", " + city + ", " + postCode + ", " + country['name'] + "; " + phone)
+# =======
+# 		address['houseNumber'] = houseNumber
+# 		address['postCode'] = postCode
+# 		address['flatNumber'] = flatNumber
+# 		address['country'] =  countryName
+
+
+# 		address = getUSaddresss(address) if countryName == "US"
+# 		address = getSNGaddresss(address) if countryName== "BY" || countryName == "RU"
+
+
+# 		puts (fullName + "; " + address + "; " + phone)
+# >>>>>>> 3fe2cb57ff998c27564f6cb4ee0eed995d39ece4
+# 	end
+# end
 
 class Address
 	@selectedCountry = "BY"
