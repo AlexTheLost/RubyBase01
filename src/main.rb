@@ -11,6 +11,9 @@ class Address
 		@SEPARATOR_LOW = " "
 		@SEPARATOR_MIDDLE = ", "
 		@SEPARATOR_HIGH = "; "
+		@RU_ALFABET = (('а'..'я').to_a + ('А'..'Я').to_a).join
+		@EN_ALFABET = (('a'..'z').to_a + ('A'..'Z').to_a).join
+
 	end
 
 	def setParameters(selectedCountry, numberOfResult, probabilityOfError)
@@ -59,12 +62,12 @@ class Address
 		data = XmlSimple.xml_in(@PATH_OT_DATA_FILE)	
 		loadAbbreviations(data)	
 		dataForCountry = getDataForCoutry(data)						
-		puts person = getPersonData(dataForCountry)
+		person = getPersonData(dataForCountry)
 		if isError()
 			puts "Create Error!:"
 			person = createError(person)			
 		end
-		return person
+		puts person
 	end	
 
 	def isError()
@@ -77,8 +80,7 @@ class Address
 	end
 
 	def createError(string)
-		# numberOfError = Random.rand(6)
-		numberOfError = 4
+		numberOfError = Random.rand(6)
 		case numberOfError
 		when 0
 			puts "Error 0:"
@@ -97,7 +99,30 @@ class Address
 			return replaseRandomAdjacentLetters(string)
 		when 5
 			puts "Error 5"	
+			return addRandomLette(string)
 		end											
+	end
+
+	def addRandomLette(string)
+		positionLetter = getRandomPositionLetter(string)
+		randomLetter = getRandomLetter(string, positionLetter)
+		string[positionLetter] = randomLetter
+		return string
+	end
+
+	def getRandomLetter(string, positionLetter)
+		randomLetter = ""
+		alfabet = []
+		if @selectedCountry == "US"
+			alfabet = @EN_ALFABET
+		elsif @selectedCountry == "BY" or @selectedCountry == "RU"
+			alfabet = @RU_ALFABET
+		else
+			puts @selectedCountry + " not found!"\
+		end
+		while (randomLetter = alfabet[Random.rand(alfabet.length)]) == string[positionLetter]
+		end
+		return randomLetter
 	end
 
 	def replaseRandomAdjacentLetters(string)

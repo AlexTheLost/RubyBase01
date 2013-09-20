@@ -1,3 +1,2 @@
-s = "abc"
-s[1..-1] = "AA"
-puts s
+# encoding: utf-8
+puts (('а'..'я').to_a + ('А'..'Я').to_a).join
