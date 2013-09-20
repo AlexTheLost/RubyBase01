@@ -1,21 +1,20 @@
 require 'xmlsimple'
 
-class Address
-	@selectedCountry = "BY"
-	@numberOfResult = 10
-	@probabilityOfError = 1
-	@abbreviations
-
-	def setParameters(selectedCountry, numberOfResult, probabilityOfError)
+class Address	
+	def initialize()
 		@PATH_OT_DATA_FILE = "resurse/data.xml"
-		@selectedCountry = selectedCountry
-		@numberOfResult = numberOfResult
-		@probabilityOfError = probabilityOfError	
-
+		@selectedCountry = "BY"
+		@numberOfResult = 10
+		@probabilityOfError = 1
 		@SEPARATOR_LOW = " "
 		@SEPARATOR_MIDDLE = ", "
 		@SEPARATOR_HIGH = "; "
+	end
 
+	def setParameters(selectedCountry, numberOfResult, probabilityOfError)
+		@selectedCountry = selectedCountry
+		@numberOfResult = numberOfResult
+		@probabilityOfError = probabilityOfError	
 	end
 
 	def iterator()
@@ -59,7 +58,65 @@ class Address
 		loadAbbreviations(data)	
 		dataForCountry = getDataForCoutry(data)						
 		puts person = getPersonData(dataForCountry)
+		if isError()
+			person = createError(person)
+			puts "Create Error!:"
+		end
+		return person
 	end	
+
+	def isError()
+		probabilityOfError = (@probabilityOfError * 100).ceil()
+		if Random.rand(100) <= probabilityOfError
+			return true
+		else
+			return false
+		end
+	end
+
+	def createError(string)
+		# numberOfError = Random.rand(6)
+		numberOfError = 0
+		case numberOfError
+		when 0
+			puts "Error 1"
+			return permutationNumber(string)
+		when 1
+			puts "Error 2"			
+		when 2
+			puts "Error 3"
+		when 3
+			puts "Error 4"
+		when 4
+			puts "Error 5"
+		when 5
+			puts "Error 6"	
+		end											
+	end
+
+	def permutationNumber(string)
+		position = []		
+		i = 0
+		for symbol in string.split("")			
+			if symbol =~ /[0-9]/
+				position.push i				
+			end
+			i += 1
+		end
+		puts position.join('/')
+		# i = 1
+		# while i < position.length
+
+		final = []
+		i = 0 
+		while i < (position.length - 1)
+			if position[i] == (position[i+1] - 1)
+				final.push [position[i], position[i+1]] 
+			end
+			i += 1
+		end
+		puts final.join('|')	
+	end
 
 	def loadAbbreviations(data)
 		@abbreviations = {}
@@ -221,10 +278,10 @@ end
 addr = Address.new()
 addr.setParameters("BY", 10 , 1)
 addr.iterator()
-addr.setParameters("US", 10 , 1)
-addr.iterator()
-addr.setParameters("RU", 10 , 1)
-iter = addr.iterator()
+# addr.setParameters("US", 10 , 1)
+# addr.iterator()
+# addr.setParameters("RU", 10 , 1)
+# iter = addr.iterator()
 
 # while iter.hasNext()
 # 	puts iter.next()
