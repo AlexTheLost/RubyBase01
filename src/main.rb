@@ -1,7 +1,7 @@
 require 'xmlsimple'
 
 # test config:
-COUNTRY = "BY"
+COUNTRY = "RU"
 numberOfResult = 10
 numberOfResult = 1
 
@@ -188,7 +188,7 @@ class Address
 			return res	
 		end
 
-		def delete()
+		def delete()			
 		end
 	end
 
@@ -204,7 +204,7 @@ class Address
 
 	def getCoutry(setCountries)
 		for country in setCountries
-			return country if country['name'] == @selectedCountry
+			return country if country['abbreviation'] == @selectedCountry
 		end
 	end
 
@@ -217,26 +217,50 @@ class Address
 		return [setFirstNames[randomNumFirstName], setSecondNames[randomNumSecondName]]
 	end
 
-	def getRandomLocation(country)
-		setStates = country['state']
-		randomNumState = Random.rand(setStates.length)	
-		randomState = setStates[randomNumState]
-		nameState = randomState['name']
+	def getRandomLocation(country)		
+		randomState = getRandomSate(country)
+		stateName = [randomState['type'], randomState['name']]
 
-		setCities = randomState['city']
-		randomNumCity = Random.rand(setCities.length)		
-		randomCity = setCities[randomNumCity]
-		cityName = randomCity['name']
+		randomCity = getRandomCity(randomState)
+		cityName = [randomCity['type'], randomCity['name']]
+	
+		phone = getRandomPhone(randomCity)
 
-		phoneCode = randomCity['phonecode'].gsub!(" ", "-")		
-		phoone = phoneCode + "-" + getRandomPhone()
+		randomStreet = getRandomStreet(randomCity)
+		streetName = [randomStreet['name'], randomStreet['type']]	
 
-		setStreests = randomCity['street']
-		randomNumStreet = Random.rand(setStreests.length)	
-		randomStreet = [setStreests[randomNumStreet]['name'], setStreests[randomNumStreet]['type']]	
+		
+		randomHouse = getRandomHouse(randomStreet)
+		houseNumber = randomHouse['number']
+
+		postCode = randomHouse['postcode']
+	
+		flatNumber, typeOfHousing = getRandomHabitation(randomHouse)
+
+		res = houseNumber + " "
+		res += streetName[1] + " " + streetName[0]  + ", "
+		res += flatNumber.to_s() + ", "
+		res += stateName[0] + " " + stateName[1] + ", " if stateName[1] != 'NONE' 
+		res += cityName[0] + " " + cityName[1] + ", "
+		res += postCode + ", "
+		res += country['name'] + "; "
+		res += phone
 	end
 
-	def getRandomPhone()
+	def getRandomSate(country)
+		setStates = country['state']
+		randomNumState = Random.rand(setStates.length)	
+		randomState = setStates[randomNumState]		
+	end
+
+	def getRandomCity(state)
+		setCities = state['city']
+		randomNumCity = Random.rand(setCities.length)		
+		randomCity = setCities[randomNumCity]
+	end
+
+	def getRandomPhone(city)
+		code = city['phonecode'].gsub!(" ", "-")		
 		phone = ""
 		i = 0
 		while i < 7 do
@@ -246,11 +270,33 @@ class Address
 			phone += Random.rand(10).to_s()
 			i += 1
 		end
-		return phone.gsub!(" ", "-")			
+		return code + "-" + phone.gsub!(" ", "-")			
+	end
+
+	def getRandomStreet(city)		
+		setStreests = city['street']
+		randomNumStreet = Random.rand(setStreests.length)	
+		randomStreet = setStreests[randomNumStreet]
+	end
+
+	def getRandomHouse(street)
+		setHouses = street['house']
+		randomNumHouse = Random.rand(setHouses.length)
+		randomHouse = setHouses[randomNumHouse]
+	end
+
+	def getRandomHabitation(house)
+		setHabitation = house['habitationnumber']
+		randomNumHabitation = Random.rand(setHabitation.length)
+		randomHabitation = setHabitation[randomNumHabitation]
+		firstNumberFlat = randomHabitation['firstnumber'].to_i()
+		lastNumberFlat = randomHabitation['lastnumber'].to_i()	
+		flatNumber = Random.rand(firstNumberFlat...lastNumberFlat)
+		typeOfHousing = randomHabitation['prefix']	
+		return [flatNumber, typeOfHousing]
 	end
 
 end
-
 
 addr = Address.new()
 addr.setParameters("BY", 10 , 1)

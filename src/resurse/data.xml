@@ -6,7 +6,7 @@
 
 
 <root>
-<country name="BY">
+<country name="Беларусь" abbreviation="BY">
 	<fullnames>
 		<firstname>Александр</firstname>
 		<firstname>Ян</firstname>
@@ -30,10 +30,11 @@
 		<secondname>Лесик</secondname>			
 	</fullnames>
 	<state name="NONE" type="область">
-		<city name="Минск" phonecode="+375 17">
+		<city name="Минск" type="город" phonecode="+375 17">
 			<street name="Авакяна" type="улица">
 				<house number="10" postcode="220039">					
 					<habitationnumber prefix="квартира" firstnumber="1" lastnumber="100" />
+					<habitationnumber prefix="TEST_квартира" firstnumber="101" lastnumber="200" />
 				</house>
 				<house number="1" postcode="220007">
 					<habitationnumber prefix="квартира" firstnumber="1" lastnumber="50" />
@@ -50,7 +51,7 @@
 		</city>
 	</state>
 	<state name="Гродненская" type="область">
-		<city name="Гродно" phonecode="+375 15">
+		<city name="Гродно" type="город" phonecode="+375 15">
 			<street name="Гонионская" type="улица">
 				<house number="48" postcode="230027">					
 					<habitationnumber prefix="квартира" firstnumber="1" lastnumber="25" />
@@ -68,7 +69,7 @@
 				</house>				
 			</street>			
 		</city>
-		<city name="TEST_Гродно" phonecode="+375 15">
+		<city name="TEST_Гродно" type="город" phonecode="+375 15">
 			<street name="Гонионская" type="улица">
 				<house number="48" postcode="230027">					
 					<habitationnumber prefix="квартира" firstnumber="1" lastnumber="25" />
@@ -89,7 +90,7 @@
 	</state>	
 </country>
 
-<country name="RU">
+<country name="Россия" abbreviation="RU">
 	<fullnames>
 		<firstname>Василий</firstname>
 		<firstname>Инокентий</firstname>
@@ -112,7 +113,7 @@
 		<secondname>Гоголь</secondname>	
 	</fullnames>
 	<state name="Кировская" type="область">
-		<city name="Зуевка" phonecode="+7 83337">
+		<city name="Зуевка" type="город" phonecode="+7 83337">
 			<street name="Базарная" type="улица">
 				<house number="20" postcode="612410">					
 					<habitationnumber prefix="квартира" firstnumber="1" lastnumber="12" />
@@ -130,7 +131,7 @@
 				</house>				
 			</street>			
 		</city>
-		<city name="Тестовка" phonecode="+7 83337">
+		<city name="Тестовка" type="город" phonecode="+7 83337">
 			<street name="Базарная" type="улица">
 				<house number="20" postcode="612410">					
 					<habitationnumber prefix="квартира" firstnumber="1" lastnumber="12" />
@@ -150,7 +151,7 @@
 		</city>		
 	</state>
 	<state name="Московская" type="область">
-		<city name="Мытищи" phonecode="+7 495">
+		<city name="Мытищи" type="город" phonecode="+7 495">
 			<street name="Карпинская" type="улица">
 				<house number="20" postcode="141000">					
 					<habitationnumber prefix="квартира" firstnumber="1" lastnumber="250" />
@@ -171,7 +172,7 @@
 	</state>	
 </country>
 
-<country name="US">
+<country name="USA" abbreviation="US">
 	<fullnames>
 		<firstname>Jon</firstname>
 		<firstname>George</firstname>		
@@ -193,7 +194,7 @@
 		<secondname>Jefferson</secondname>	
 	</fullnames>
 	<state name="New York" type="state">
-		<city name="New York" phonecode="+1 212">
+		<city name="New York" type="city" phonecode="+1 212">
 			<street name="5th and Madison" type="avenue">
 				<house number="1" postcode="10001">					
 					<habitationnumber prefix="suite" firstnumber="110" lastnumber="115" />
