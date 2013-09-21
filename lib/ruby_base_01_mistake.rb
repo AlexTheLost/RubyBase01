@@ -2,8 +2,8 @@
 
 class RubyBase01Mistake
     public
+
     def initialize()
-        @country = ""
         @US = "US"
         @RU = "RU"
         @BY = "BY"
@@ -168,10 +168,3 @@ class RubyBase01Mistake
         if letter =~ /[a-zа-я]/ then true else false end
     end
 end
-
-puts string = "Але32кс пришел 123 321"
-prob = 1
-country = "RU"
-test = RubyBase01Mistake.new()
-puts test.create_mistake(string, prob, country)
-# puts test.swapping_lette("as", [[0,1]])
