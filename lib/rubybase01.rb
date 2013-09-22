@@ -2,7 +2,7 @@
 require 'xmlsimple'
 require 'set'
 
-class Address   
+class Address
     def initialize()
         @PATH_OT_DATA_FILE = "resurse/data.xml"
         @selectedCountry = "BY"
