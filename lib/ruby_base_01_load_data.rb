@@ -1,7 +1,7 @@
 # encoding: utf-8
 require 'xmlsimple'
 
-class RubyBase01ReadData
+class RubyBase01LoadData
     public
 
     def initialize()
@@ -11,7 +11,7 @@ class RubyBase01ReadData
     def get_data(abbreviation)
         data = XmlSimple.xml_in(@PATH_OT_DATA_FILE)
         country = select_country(data, abbreviation)
-        data_by_country = get_data_by_country(country)        
+        return get_data_by_country(country)        
     end
 
     private
@@ -20,13 +20,9 @@ class RubyBase01ReadData
     	template_country = [country['name']]
     	states = country['state']
     	data_by_states = get_data_by_states(template_country, states)
-
         full_names = country['fullnames']
         data_by_full_name = get_data_by_full_names(full_names)
-        
         result = join_all_data(data_by_states, data_by_full_name)
-
-        puts "generation end, num data = #{result.length}"
         return result
     end
 
@@ -128,28 +124,6 @@ class RubyBase01ReadData
                 result.push (full_name + address).join('|')
             end
         end
-        # puts(result)
         return result
     end
-
-    def save_to_file(f_name, data)
-        text = "length: #{data.length} \n"
-        i = 0
-        # for line in data
-        #     text += "\n#{line.join('/')}"
-        #     print "#{i}, "
-        #     i += 1
-        # end
-        text += data.join('\x0D\x0A')
-        File.open(f_name, 'w') { |file| file.write(text) }
-        puts "save to #{f_name} execute"
-    end 
-
-    def pt(arr)
-        for el in arr
-            puts el.join('|')
-        end
-    end
 end
-
-RubyBase01ReadData.new().get_data("BY")
