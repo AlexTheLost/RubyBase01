@@ -11,7 +11,7 @@ class RubyBase01ReadData
     def get_data(abbreviation)
         data = XmlSimple.xml_in(@PATH_OT_DATA_FILE)
         country = select_country(data, abbreviation)
-        get_data_by_country(country)
+        data_by_country = get_data_by_country(country)        
     end
 
     private
@@ -19,9 +19,15 @@ class RubyBase01ReadData
     def get_data_by_country(country)
     	template_country = [country['name']]
     	states = country['state']
-    	data_by_state = get_data_by_states(template_country, states)
+    	data_by_states = get_data_by_states(template_country, states)
 
-    	save_to_file('resurse/out.txt', data_by_state)
+        full_names = country['fullnames']
+        data_by_full_name = get_data_by_full_names(full_names)
+        
+        result = join_all_data(data_by_states, data_by_full_name)
+
+        puts "generation end, num data = #{result.length}"
+        return result
     end
 
     def select_country(data, abbreviation)
@@ -103,21 +109,47 @@ class RubyBase01ReadData
     	return result
     end
 
-    def pt(arr)
-    	for el in arr
-    		puts el.join('|')
-    	end
+    def get_data_by_full_names(full_names)
+        first_names = full_names[0]['firstname']
+        second_names = full_names[0]['secondname']
+        result = []
+        for f_name in first_names
+            for s_name in second_names
+                result.push [f_name, s_name]
+            end
+        end
+        return result
+    end
+
+    def join_all_data(data_by_states, data_by_full_name)
+        result = []
+        for full_name in data_by_full_name
+            for address in data_by_states
+                result.push (full_name + address).join('|')
+            end
+        end
+        # puts(result)
+        return result
     end
 
     def save_to_file(f_name, data)
-    	text = "length: #{data.length} \n"
-    	for line in data
-    		text += "\n#{line.join('/')}"
-    	end
-    	File.open(f_name, 'w') { |file| file.write(text) }
-    	puts "save to #{f_name} execute"
-    end
+        text = "length: #{data.length} \n"
+        i = 0
+        # for line in data
+        #     text += "\n#{line.join('/')}"
+        #     print "#{i}, "
+        #     i += 1
+        # end
+        text += data.join('\x0D\x0A')
+        File.open(f_name, 'w') { |file| file.write(text) }
+        puts "save to #{f_name} execute"
+    end 
 
+    def pt(arr)
+        for el in arr
+            puts el.join('|')
+        end
+    end
 end
 
-RubyBase01ReadData.new().get_data("US")
+RubyBase01ReadData.new().get_data("BY")
