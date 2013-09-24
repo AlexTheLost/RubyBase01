@@ -16,7 +16,7 @@ class RubyBase01GenerationData
 		@size = size
 		@prob = prob
 
-		data = RubyBase01LoadData.new().get_data("US")
+		data = RubyBase01LoadData.new().get_data(@abbreviation)
 
 		sample_data = select_random_data(data)
 		puts sample_data
@@ -27,5 +27,5 @@ class RubyBase01GenerationData
 	end
 end
 
-RubyBase01GenerationData.new().get_data("US", 100, 1)
+RubyBase01GenerationData.new().get_data("BY", 10, 1)
 
